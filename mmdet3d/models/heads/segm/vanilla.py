@@ -95,11 +95,13 @@ class BEVSegmentationHead(nn.Module):
         grid_transform: Dict[str, Any],
         classes: List[str],
         loss: str,
+        threshold: float
     ) -> None:
         super().__init__()
         self.in_channels = in_channels
         self.classes = classes
         self.loss = loss
+        self.threshold = threshold
 
         self.transform = BEVGridTransform(**grid_transform)
         self.classifier = nn.Sequential(
